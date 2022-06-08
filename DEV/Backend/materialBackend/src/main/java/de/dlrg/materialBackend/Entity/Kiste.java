@@ -3,11 +3,12 @@ package de.dlrg.materialBackend.Entity;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table(name = "lagerort")
-public class lagerort {
-
+@Table(name = "kiste")
+public class Kiste {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -17,7 +18,10 @@ public class lagerort {
 
     private String beschreibung;
 
-    public lagerort() {
+    @OneToMany(mappedBy = "kiste")
+    private List<lagerortKiste> lagerortkiste;
+
+    public Kiste() {
     }
 
     public Long getId() {
@@ -43,4 +47,5 @@ public class lagerort {
     public void setBeschreibung(String beschreibung) {
         this.beschreibung = beschreibung;
     }
+
 }

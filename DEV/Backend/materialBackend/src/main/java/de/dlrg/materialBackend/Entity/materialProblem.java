@@ -17,7 +17,7 @@ public class materialProblem {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "material_id", nullable = false)
-    private de.dlrg.materialBackend.Entity.material material;
+    private Material material;
 
     public materialProblem() {
     }
@@ -54,11 +54,11 @@ public class materialProblem {
         this.problemDatum = problemDatum;
     }
 
-    public de.dlrg.materialBackend.Entity.material getMaterial() {
+    public Material getMaterial() {
         return material;
     }
 
-    public void setMaterial(de.dlrg.materialBackend.Entity.material material) {
+    public void setMaterial(Material material) {
         this.material = material;
     }
 }

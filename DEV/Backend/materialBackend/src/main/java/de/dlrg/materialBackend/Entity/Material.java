@@ -1,14 +1,17 @@
 package de.dlrg.materialBackend.Entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.List;
 
+import static org.hibernate.type.descriptor.java.JdbcDateTypeDescriptor.DATE_FORMAT;
+
 @Entity
 @Table(name = "Material")
-public class material {
+public class Material {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long material_id;
@@ -17,8 +20,11 @@ public class material {
     private String name;
     private String beschreibung;
     private String seriennummer;
+    @JsonFormat(pattern = DATE_FORMAT)
     private Date änderungsDatum;
+    @JsonFormat(pattern = DATE_FORMAT)
     private Date herstellDatum;
+    @JsonFormat(pattern = DATE_FORMAT)
     private Date prüfungsTermin;
     private int interVall;
     private Date ablaufDatum;
@@ -28,8 +34,12 @@ public class material {
     @OneToMany(mappedBy = "material", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private List<materialProblem> materialProbleme;
 
+    @ManyToOne
+    @JoinColumn(name = "lagerortkiste_id")
+    private Kiste kiste;
 
-    public material() {
+
+    public Material() {
     }
 
 
